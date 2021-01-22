@@ -1,5 +1,6 @@
 import React from 'react'
 import {View, Text, FlatList} from 'react-native'
+import { TodoItem } from '../TodoItem'
 
 const todoData = [
     {
@@ -32,10 +33,7 @@ const todoData = [
 export const TodoList = ()=>{
 
     const renderItem = ({item}) =>(
-        <View>
-            <Text>{item.name}</Text>
-            <Text>{item.category}</Text>
-        </View>
+        <TodoItem name={item.name} category={item.category}/>
     )
 
     return (
