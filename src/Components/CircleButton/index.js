@@ -1,9 +1,9 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-export const CircleButton = () =>{
+export const CircleButton = ({add}) =>{
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={()=>add()}>
             <Text style={styles.text}>+</Text>
         </TouchableOpacity>
     )

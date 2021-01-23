@@ -6,7 +6,7 @@ export default function App() {
   return (
     <>
     <StatusBar barStyle="dark-content"/>
-      <SafeAreaView>
+      <SafeAreaView style={{flex:1}}>
         <Main/>
       </SafeAreaView>
     </>
