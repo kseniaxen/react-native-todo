@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import CheckBox from '@react-native-community/checkbox'
 
-export const TodoItem = ({ name, category }) => {
+export const TodoItem = ({ id, name, category, setTaskCompleted, isCompleted }) => {
 
-    const [toggleCheckBox, setToggleCheckBox] = useState(false)
+    const [toggleCheckBox, setToggleCheckBox] = useState(isCompleted)
 
+    const onChange = (newValue) =>{
+        setToggleCheckBox(newValue)
+        setTaskCompleted({isChecked: newValue, id})
+    }
     return (
         <View style={styles.container}>
             <CheckBox
                 disabled={false}
                 value={toggleCheckBox}
-                onValueChange={(newValue) => setToggleCheckBox(newValue)} />
+                onValueChange={onChange} />
             <View style={styles.textContainer}>
                 <Text style={styles.nameText}>{name}</Text>
                 <Text style={styles.categoryText}>{category}</Text>
@@ -22,8 +26,7 @@ export const TodoItem = ({ name, category }) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
-        paddingVertical: 18,
+        paddingVertical: 10,
         flexDirection:'row'
     },
     textContainer:{
