@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { Picker } from '@react-native-picker/picker';
 import CheckBox from '@react-native-community/checkbox'
 import { todoProps } from '../../Constants/todo'
 
-export const TodoItem = ({ id, name, category, onChangeTodo, isCompleted }) => {
+export const TodoItem = ({ id, name, category, onChangeTodo, isCompleted, todoCategories }) => {
 
     const [toggleCheckBox, setToggleCheckBox] = useState(isCompleted)
     const [isEditable, setIsEditable] = useState(false)
@@ -14,6 +15,15 @@ export const TodoItem = ({ id, name, category, onChangeTodo, isCompleted }) => {
         }
         onChangeTodo({ key, value, id })
     }
+
+    // const renderPickerItems = () => {
+    //     Object.keys(todoCategories).map((key) => {
+    //         return (
+    //             <Picker.Item label={todoCategories[key]} value={todoCategories[key]} />
+    //         )
+    //     })
+    // }
+
     return (
         <View style={styles.container}>
             <View style={styles.infoContainer}>
@@ -31,7 +41,23 @@ export const TodoItem = ({ id, name, category, onChangeTodo, isCompleted }) => {
                     ) : (
                             <Text style={styles.nameText}>{name}</Text>
                         )}
-                    <Text style={styles.categoryText}>{category}</Text>
+                    {isEditable ? (
+                        <Picker
+                            onValueChange={(value) => onChange(todoProps.category, value)}
+                            selectedValue={category}>
+                            {
+                                    Object.keys(todoCategories).map((key) => {
+                                        return (
+                                            <Picker.Item label={todoCategories[key]} value={todoCategories[key]} />
+                                        )
+                                    })
+                            }
+                        </Picker>
+                    ) : (
+                            <Text style={styles.categoryText}>{category}</Text>
+                        )}
+
+
                 </View>
             </View>
             <View>
@@ -46,11 +72,11 @@ export const TodoItem = ({ id, name, category, onChangeTodo, isCompleted }) => {
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 10,
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         flexDirection: 'row'
     },
-    infoContainer:{
-        flexDirection:'row'
+    infoContainer: {
+        flexDirection: 'row'
     },
     textContainer: {
         marginLeft: 15

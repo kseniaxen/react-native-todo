@@ -2,11 +2,11 @@ import React from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import {TodoList} from '../TodoList'
 
-export const TodoBlock = ({todoData, title, onChangeTodo}) => {
+export const TodoBlock = ({todoData, title, onChangeTodo, todoCategories}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{title}</Text>
-            <TodoList todoData={todoData} onChangeTodo={onChangeTodo}/>
+            <TodoList todoData={todoData} onChangeTodo={onChangeTodo} todoCategories={todoCategories}/>
         </View>
     )
 }
