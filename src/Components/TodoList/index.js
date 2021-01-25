@@ -2,14 +2,14 @@ import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 import { TodoItem } from '../TodoItem'
 
-export const TodoList = ({ todoData, setTaskCompleted }) => {
+export const TodoList = ({ todoData, onChangeTodo }) => {
 
     const renderItem = ({ item }) => (
         <TodoItem
             id={item.id}
             name={item.name}
             category={item.category}
-            setTaskCompleted={setTaskCompleted}
+            onChangeTodo={onChangeTodo}
             isCompleted={item.isCompleted}
         />
     )

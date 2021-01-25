@@ -2,37 +2,38 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import { CircleButton } from '../../Components/CircleButton'
 import { TodoBlock } from '../../Components/TodoBlock'
+import {todoProps} from '../../Constants/todo'
 
 const initaltodoData = [
     {
-        id: '1',
-        isCompleted: true,
-        name: 'Hand sanitizer',
-        category: 'Shopping List'
+        [todoProps.id]: '1',
+        [todoProps.isCompleted]: true,
+        [todoProps.name]: 'Hand sanitizer',
+        [todoProps.category]: 'Shopping List'
     },
     {
-        id: '2',
-        isCompleted: false,
-        name: 'Upload 1099-R to TurboTax',
-        category: 'Finance'
+        [todoProps.id]: '2',
+        [todoProps.isCompleted]: false,
+        [todoProps.name]: 'Upload 1099-R to TurboTax',
+        [todoProps.category]: 'Finance'
     },
     {
-        id: '3',
-        isCompleted: true,
-        name: 'Submit 2019 tax return',
-        category: 'Finance'
+        [todoProps.id]: '3',
+        [todoProps.isCompleted]: true,
+        [todoProps.name]: 'Submit 2019 tax return',
+        [todoProps.category]: 'Finance'
     },
     {
-        id: '4',
-        isCompleted: false,
-        name: 'Print parking passes',
-        category: 'Wedding'
+        [todoProps.id]: '4',
+        [todoProps.isCompleted]: false,
+        [todoProps.name]: 'Print parking passes',
+        [todoProps.category]: 'Wedding'
     },
     {
-        id: '5',
-        isCompleted: true,
-        name: 'Sign contract, send back',
-        category: 'Freelance'
+        [todoProps.id]: '5',
+        [todoProps.isCompleted]: true,
+        [todoProps.name]: 'Sign contract, send back',
+        [todoProps.category]: 'Freelance'
     }
 ]
 
@@ -66,12 +67,12 @@ export const Main = () => {
         return data.filter((item) => item.isCompleted === status)
     }
 
-    const setTaskCompleted = ({ isChecked, id }) => {
+    const onChangeTask = ({ key, value, id }) => {
         const newTodoData = todoData.map(item=> {
             if(item.id === id){
                 return {
                     ...item,
-                    isCompleted:isChecked
+                    [key]:value
                 }
             }else{
                 return item
@@ -85,12 +86,12 @@ export const Main = () => {
             <TodoBlock
                 todoData={filterTodoData({ data: todoData, status: false })}
                 title={'Невыполненные'}
-                setTaskCompleted={setTaskCompleted}
+                onChangeTodo={onChangeTask}
             />
             <TodoBlock
                 todoData={filterTodoData({ data: todoData, status: true })}
                 title={'Выполненные'}
-                setTaskCompleted={setTaskCompleted}
+                onChangeTodo={onChangeTask}
             />
             <CircleButton add={addNewTask} />
         </View>
