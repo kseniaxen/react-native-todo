@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet} from 'react-native'
 import { CircleButton } from '../../Components/CircleButton'
 import { TodoBlock } from '../../Components/TodoBlock'
 import {todoProps} from '../../Constants/todo'
@@ -42,10 +42,10 @@ function generateId() {
 }
 
 const initialTask = {
-    id: null,
-    isCompleted: false,
-    name: 'Новая задача',
-    category: null
+    [todoProps.id]: null,
+    [todoProps.isCompleted]: false,
+    [todoProps.name]: 'Новая задача',
+    [todoProps.category]: null
 }
 
 
@@ -58,7 +58,7 @@ export const Main = () => {
             ...todoData,
             {
                 ...initialTask,
-                id: generateId()
+                [todoProps.id]: generateId()
             }
         ])
     }
